@@ -1,21 +1,21 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { ButtonGroup, Button, Icon } from '@material-ui/core'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { ButtonGroup, Button, Icon } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   buttonGroupContainer: {
-    minWidth: 100,
-    margin: 'auto',
-    position: 'absolute',
+    minWidth: 150,
+    margin: "auto",
+    position: "absolute",
     bottom: 0,
   },
   buttonGroup: {
-    margin: '5px auto',
+    margin: "5px auto",
   },
-}))
+}));
 
 const DisplayTools = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <div className={classes.buttonGroupContainer}>
       <ButtonGroup
@@ -33,7 +33,7 @@ const DisplayTools = () => {
         </Button>
       </ButtonGroup>
     </div>
-  )
-}
+  );
+};
 
-export default DisplayTools
+export default DisplayTools;

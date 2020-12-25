@@ -1,27 +1,22 @@
-import React, { useState } from 'react'
-import { FormControl, Select, MenuItem, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useState } from "react";
+import { FormControl, Select, MenuItem, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
-    margin: '30px auto',
+    margin: "30px auto",
     miWwidth: 150,
     marginBottom: 350,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-}))
+}));
 
-const SortForm = () => {
-  const sortList = ['Insertion', 'Selection', 'Merge']
+const SortForm = ({ selectedSort, handleSortChange, sortList }) => {
 
-  const [sortType, setSortType] = useState(sortList[0])
-  const classes = useStyles()
+  const classes = useStyles();
 
-  const handleChange = (e) => {
-    setSortType(e.target.value)
-  }
   return (
     <div className={classes.formContainer}>
       <FormControl fullWidth>
@@ -31,8 +26,8 @@ const SortForm = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={sortType}
-          onChange={handleChange}
+          value={selectedSort}
+          onChange={handleSortChange}
         >
           {sortList.map((item) => (
             <MenuItem key={item} value={item}>
@@ -42,7 +37,7 @@ const SortForm = () => {
         </Select>
       </FormControl>
     </div>
-  )
-}
+  );
+};
 
-export default SortForm
+export default SortForm;
