@@ -1,6 +1,6 @@
-import selectionSort from './selectionSort'
+import selectionSort from "./selectionSort";
 
 export default {
-    'Selection': selectionSort,
-    'Insertion': selectionSort
-}
+  Selection: selectionSort,
+  Insertion: selectionSort,
+};

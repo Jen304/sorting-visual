@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormControl, Select, MenuItem, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SortForm = ({ selectedSort, handleSortChange, sortList }) => {
-
+const SortForm = ({ selectedSort, handleSortChange, sortList , isSorting}) => {
   const classes = useStyles();
 
   return (
@@ -28,6 +27,7 @@ const SortForm = ({ selectedSort, handleSortChange, sortList }) => {
           id="demo-simple-select"
           value={selectedSort}
           onChange={handleSortChange}
+          disabled={isSorting}
         >
           {sortList.map((item) => (
             <MenuItem key={item} value={item}>

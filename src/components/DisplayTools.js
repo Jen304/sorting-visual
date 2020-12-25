@@ -14,8 +14,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DisplayTools = () => {
+const DisplayTools = ({ isSorting, setIsSorting,reset, setReset }) => {
   const classes = useStyles();
+
+  const handleSortState = () => {
+    setIsSorting(!isSorting);
+  };
+
+  const handleReset = () =>{
+    setReset(!reset);
+  }
   return (
     <div className={classes.buttonGroupContainer}>
       <ButtonGroup
@@ -25,11 +33,15 @@ const DisplayTools = () => {
         aria-label="contained primary button group"
         fullWidth
       >
-        <Button>
+        <Button onClick={handleReset} disabled={isSorting}>
           <Icon>replay</Icon>
         </Button>
-        <Button>
-          <Icon>play_circle_outline</Icon>
+        <Button onClick={handleSortState}>
+          {isSorting ? (
+            <Icon>pause_circle_filled</Icon>
+          ) : (
+            <Icon>play_circle_outline</Icon>
+          )}
         </Button>
       </ButtonGroup>
     </div>

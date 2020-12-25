@@ -23,12 +23,12 @@ const useStyles = makeStyles({
 });
 
 const SortDisplay = () => {
-  
   const sortList = Object.keys(sortAlgoList);
 
   console.log(sortList);
   const [selectedSort, setSelectedSort] = useState(sortList[0]);
   const [isSorting, setIsSorting] = useState(false);
+  const [reset, setReset] = useState(false);
 
   const handleSortChange = (e) => {
     setSelectedSort(e.target.value);
@@ -44,11 +44,21 @@ const SortDisplay = () => {
       className={classes.sortDisplay}
     >
       <Box>
-        <BarList />
+        <BarList selectedSort={selectedSort} isSorting={isSorting} reset={reset} />
       </Box>
       <Box className={classes.sortTool}>
-        <SortForm handleSortChange={handleSortChange} selectedSort={selectedSort} sortList={sortList} />
-        <DisplayTools isSorting={isSorting} sortList={sortList} />
+        <SortForm
+          handleSortChange={handleSortChange}
+          selectedSort={selectedSort}
+          sortList={sortList}
+          isSorting={isSorting}
+        />
+        <DisplayTools
+          isSorting={isSorting}
+          setIsSorting={setIsSorting}
+          reset={reset}
+          setReset={setReset}
+        />
       </Box>
     </Box>
   );

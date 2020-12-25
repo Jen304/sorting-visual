@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 
+// Import sorting algo
+import sortAlgoList from "../algorithms/";
+
 const useStyles = makeStyles(() => ({
   barContainer: {
     height: "75vh",
@@ -16,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const BarList = (props) => {
+const BarList = ({reset}) => {
   const [numList, setNumList] = useState([]);
 
   const classes = useStyles();
@@ -31,9 +34,9 @@ const BarList = (props) => {
   };
 
   useEffect(() => {
-    console.log(props);
+    //console.log(props);
     resetNumList();
-  }, []);
+  }, [reset]);
 
   return (
     <Box
