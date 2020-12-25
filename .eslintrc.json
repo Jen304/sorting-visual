@@ -1,0 +1,4 @@
+{
+    "extends": ["@imaginary-cloud/react"],
+    "ignorePatterns": "src/reportWebVitals.js"
+}
