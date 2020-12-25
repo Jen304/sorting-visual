@@ -4,11 +4,10 @@ import { ButtonGroup, Button, Icon } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
   buttonGroupContainer: {
-    width: 150,
+    minWidth: 100,
     margin: 'auto',
     position: 'absolute',
     bottom: 0,
-    left: 28,
   },
   buttonGroup: {
     margin: '5px auto',

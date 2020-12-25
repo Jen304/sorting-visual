@@ -7,7 +7,7 @@ import DisplayTools from './DisplayTools'
 
 const useStyles = makeStyles({
   sortDisplay: {
-    width: '100%',
+    width: '100vw',
     margin: 'auto',
     marginTop: 60,
     position: 'relative',
@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   sortTool: {
     height: '78vh',
     position: 'relative',
+    marginLeft: 50,
   },
 })
 

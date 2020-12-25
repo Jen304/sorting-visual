@@ -5,7 +5,7 @@ import { Box } from '@material-ui/core'
 const useStyles = makeStyles(() => ({
   barContainer: {
     height: '75vh',
-    width: '80vw',
+    width: '70vw',
     padding: 20,
     marginRight: 40,
     backgroundColor: '#37474f',

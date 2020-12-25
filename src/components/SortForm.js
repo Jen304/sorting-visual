@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { FormControl, Select, MenuItem, FormLabel } from '@material-ui/core'
+import { FormControl, Select, MenuItem, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
     margin: '30px auto',
-    width: 200,
+    miWwidth: 150,
     marginBottom: 350,
   },
   selectEmpty: {
@@ -25,7 +25,9 @@ const SortForm = () => {
   return (
     <div className={classes.formContainer}>
       <FormControl fullWidth>
-        <FormLabel component="legend">Select a sort type:</FormLabel>
+        <Typography variant="h6" component="h4">
+          Select a sort type:
+        </Typography>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
