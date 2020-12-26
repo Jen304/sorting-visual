@@ -90,23 +90,23 @@ const SortDisplay = () => {
     setTimeoutList(timeouts);
   };
 
-  const forwardNextStep = () =>{
-    if(currentStep < sortStep.length - 1){
+  const forwardNextStep = () => {
+    if (currentStep < sortStep.length - 1) {
       const nextStep = currentStep + 1;
       setNumList(sortStep[nextStep]);
       setCurrentColorList(stepColor[nextStep]);
       setCurrentStep(nextStep);
     }
-  }
+  };
 
   const backwardPrevStep = () => {
-    if(currentStep > 0){
+    if (currentStep > 0) {
       const nextStep = currentStep - 1;
       setNumList(sortStep[nextStep]);
       setCurrentColorList(stepColor[nextStep]);
       setCurrentStep(nextStep);
     }
-  }
+  };
 
   useEffect(() => {
     generateNumList();

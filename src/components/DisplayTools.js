@@ -20,7 +20,8 @@ const DisplayTools = ({
   stopSort,
   isSorting,
   setIsSorting,
-  nextStep, prevStep
+  nextStep,
+  prevStep,
 }) => {
   const classes = useStyles();
 

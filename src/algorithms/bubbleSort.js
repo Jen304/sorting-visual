@@ -1,13 +1,35 @@
-let bubbleSort = (inputArr) => {
-    let len = inputArr.length;
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len; j++) {
-            if (inputArr[j] > inputArr[j + 1]) {
-                let tmp = inputArr[j];
-                inputArr[j] = inputArr[j + 1];
-                inputArr[j + 1] = tmp;
-            }
-        }
+import sortHelper, { CUR_POS, SORTED } from "./helper";
+
+let bubbleSort = ({ numList, setNewStepList }) => {
+  const {
+    numArray,
+    defaultColorList,
+    length,
+    addNewStep,
+    setStepList,
+  } = sortHelper(numList, setNewStepList);
+
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < length - 1; j++) {
+      if (numArray[j] > numArray[j + 1]) {
+        let tmp = numArray[j];
+        numArray[j] = numArray[j + 1];
+        numArray[j + 1] = tmp;
+        //numListStep.push([...numArray]);
+        const newColorList = [...defaultColorList];
+        newColorList[j] = CUR_POS;
+        newColorList[j + 1] = CUR_POS;
+        //colorListStep.push(newColorList);
+        addNewStep(numArray, newColorList);
+      }
     }
-    return inputArr;
+    defaultColorList[length - 1 - i] = SORTED;
+  }
+  //   numListStep.push([...numArray]);
+  //   colorListStep.push(defaultColorList);
+  //   setNewStepList(numListStep, colorListStep);
+  addNewStep(numArray, defaultColorList);
+  setStepList();
 };
+
+export default bubbleSort;

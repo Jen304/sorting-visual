@@ -1,13 +1,14 @@
-import { NOT_SORTED, CUR_POS, SORTED } from "./helper";
+import sortHelper, { CUR_POS, SORTED } from "./helper";
 
 const selectionSort = ({ numList, setNewStepList }) => {
-  const numArray = [...numList];
-  const defaultColorList = Array(numArray.length).fill(NOT_SORTED);
+  const {
+    numArray,
+    defaultColorList,
+    length,
+    addNewStep,
+    setStepList,
+  } = sortHelper(numList, setNewStepList);
 
-  const length = numArray.length;
-  const colorListStep = [];
-  const numListStep = [];
-  //console.log(numArray);
   for (let i = 0; i < length; i++) {
     // find the min number in the remaining list
     let minIndex = i;
@@ -16,11 +17,10 @@ const selectionSort = ({ numList, setNewStepList }) => {
         minIndex = j;
       }
       // need to use slice to avoid shallow copy
-      numListStep.push([...numArray]);
       const newColorList = [...defaultColorList];
       newColorList[i] = CUR_POS;
       newColorList[j] = CUR_POS;
-      colorListStep.push(newColorList);
+      addNewStep(numArray, newColorList);
     }
 
     if (minIndex !== i) {
@@ -31,9 +31,8 @@ const selectionSort = ({ numList, setNewStepList }) => {
     }
     defaultColorList[i] = SORTED;
   }
-  numListStep.push([...numArray]);
-  colorListStep.push(defaultColorList);
-  setNewStepList(numListStep, colorListStep);
+  addNewStep(numArray, defaultColorList);
+  setStepList();
 };
 
 export default selectionSort;
