@@ -48,26 +48,24 @@ const SortDisplay = () => {
     for (let i = 0; i < MAX_LENGTH; i += 1) {
       newNumList.push(Math.floor(Math.random() * 100 + 1));
     }
-    console.log(newNumList);
-    setCurrentStep(0);
-    //currentStep = 0;
-    setCurrentColorList( Array(MAX_LENGTH).fill(0))
-    setNumList(newNumList);
+    //console.log(newNumList);
     sortNumList(newNumList);
+    setCurrentStep(0);
+    setCurrentColorList(Array(MAX_LENGTH).fill(0));
+    setNumList(newNumList);
+
     clearTimeOutList();
   };
 
   const setNewStepList = (newStepList, newColorStep) => {
+    //console.log('ready for display')
+    //console.log(newStepList);
     setSortStep(newStepList);
     setStepColor(newColorStep);
-    // sortStep = newStepList;
-    // stepColor = newColorStep;
-    // console.log(newStepList);
-    // console.log(stepColor);
   };
 
-  const sortNumList = () => {
-    sortAlgoList[selectedSort]({ numList, setNewStepList });
+  const sortNumList = (newNumList) => {
+    sortAlgoList[selectedSort]({ numList: newNumList, setNewStepList });
   };
 
   const handleSortChange = (e) => {
@@ -75,31 +73,29 @@ const SortDisplay = () => {
   };
 
   const clearTimeOutList = () => {
-    
     timeoutList.forEach((element) => clearTimeout(element));
     setTimeoutList([]);
   };
 
   const startSort = () => {
-    
-    console.log('play sorting');
-    console.log(currentStep);
-    console.log(stepColor);
+    //console.log('play sorting');
+    //console.log(currentStep);
+    //console.log(stepColor);
     clearTimeOutList();
     const timeouts = [];
     for (let i = currentStep; i < sortStep.length; i++) {
       const step = setTimeout(() => {
         setNumList(sortStep[i]);
         setCurrentColorList(stepColor[i]);
-        console.log(i);
-        if(i == sortStep.length -1){
-          console.log('reset current step');
+        //console.log(i);
+        if (i == sortStep.length - 1) {
+          console.log("reset current step");
           setCurrentStep(0);
           setIsSorting(false);
-        }else{
+        } else {
           setCurrentStep(i);
         }
-      }, 30);
+      }, 100);
       timeouts.push(step);
     }
     setTimeoutList(timeouts);
@@ -108,7 +104,6 @@ const SortDisplay = () => {
   useEffect(() => {
     generateNumList();
   }, [selectedSort]);
-
 
   return (
     <Box

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ButtonGroup, Button, Icon } from "@material-ui/core";
 
@@ -14,15 +14,21 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DisplayTools = ({ resetNumList, startSort, stopSort, isSorting, setIsSorting }) => {
+const DisplayTools = ({
+  resetNumList,
+  startSort,
+  stopSort,
+  isSorting,
+  setIsSorting,
+}) => {
   const classes = useStyles();
 
   const handleSortState = () => {
-    console.log('play')
-    if(isSorting){
+    console.log("play");
+    if (isSorting) {
       stopSort();
       setIsSorting(false);
-    }else{
+    } else {
       startSort();
       setIsSorting(true);
     }
