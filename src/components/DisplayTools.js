@@ -20,11 +20,11 @@ const DisplayTools = ({
   stopSort,
   isSorting,
   setIsSorting,
+  nextStep, prevStep
 }) => {
   const classes = useStyles();
 
   const handleSortState = () => {
-    console.log("play");
     if (isSorting) {
       stopSort();
       setIsSorting(false);
@@ -46,12 +46,18 @@ const DisplayTools = ({
         <Button onClick={resetNumList}>
           <Icon>replay</Icon>
         </Button>
+        <Button onClick={prevStep} variant="outlined">
+          <Icon>skip_previous</Icon>
+        </Button>
         <Button onClick={handleSortState}>
           {isSorting ? (
             <Icon>pause_circle_filled</Icon>
           ) : (
             <Icon>play_circle_outline</Icon>
           )}
+        </Button>
+        <Button onClick={nextStep} variant="outlined">
+          <Icon>skip_next</Icon>
         </Button>
       </ButtonGroup>
     </div>

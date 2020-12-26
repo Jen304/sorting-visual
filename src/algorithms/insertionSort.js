@@ -1,4 +1,4 @@
-import { NOT_SORTED, CUR_POS, SORTED } from "./constant";
+import { NOT_SORTED, CUR_POS, SORTED } from "./helper";
 
 const insertionSort = ({ numList, setNewStepList }) => {
   const numArray = [...numList];
@@ -8,7 +8,6 @@ const insertionSort = ({ numList, setNewStepList }) => {
   const colorListStep = [];
   const numListStep = [];
 
-  
   for (let i = 1; i < length; i++) {
     // Choosing the first element in our unsorted subarray
     let current = numArray[i];

@@ -1,5 +1,5 @@
 import selectionSort from "./selectionSort";
-import insertionSort from './insertionSort'
+import insertionSort from "./insertionSort";
 
 export default {
   Selection: selectionSort,

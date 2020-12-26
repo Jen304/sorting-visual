@@ -1,4 +1,4 @@
-import { NOT_SORTED, CUR_POS, SORTED } from "./constant";
+import { NOT_SORTED, CUR_POS, SORTED } from "./helper";
 
 const selectionSort = ({ numList, setNewStepList }) => {
   const numArray = [...numList];
