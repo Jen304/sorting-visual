@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ButtonGroup, Button, Icon } from "@material-ui/core";
 
@@ -14,16 +14,18 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DisplayTools = ({ isSorting, setIsSorting,reset, setReset }) => {
+const DisplayTools = ({ resetNumList, startSort, stopSort, isSorting }) => {
   const classes = useStyles();
 
   const handleSortState = () => {
-    setIsSorting(!isSorting);
+    console.log('play')
+    if(isSorting()){
+      stopSort()
+    }else{
+      startSort();
+    }
   };
 
-  const handleReset = () =>{
-    setReset(!reset);
-  }
   return (
     <div className={classes.buttonGroupContainer}>
       <ButtonGroup
@@ -33,11 +35,11 @@ const DisplayTools = ({ isSorting, setIsSorting,reset, setReset }) => {
         aria-label="contained primary button group"
         fullWidth
       >
-        <Button onClick={handleReset} disabled={isSorting}>
+        <Button onClick={resetNumList}>
           <Icon>replay</Icon>
         </Button>
         <Button onClick={handleSortState}>
-          {isSorting ? (
+          {isSorting() ? (
             <Icon>pause_circle_filled</Icon>
           ) : (
             <Icon>play_circle_outline</Icon>

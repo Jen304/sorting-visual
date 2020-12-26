@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SortForm = ({ selectedSort, handleSortChange, sortList , isSorting}) => {
+const SortForm = ({ selectedSort, handleSortChange, sortList, isSorting }) => {
   const classes = useStyles();
 
   return (

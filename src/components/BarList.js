@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-
-// Import sorting algo
-import sortAlgoList from "../algorithms/";
 
 const useStyles = makeStyles(() => ({
   barContainer: {
@@ -19,24 +16,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const BarList = ({reset}) => {
-  const [numList, setNumList] = useState([]);
-
+const BarList = ({ numList, colorStepList }) => {
   const classes = useStyles();
-
-  const resetNumList = () => {
-    const MAX_LENGTH = 50;
-    const newNumList = [];
-    for (let i = 0; i < MAX_LENGTH; i += 1) {
-      newNumList.push(Math.floor(Math.random() * 100 + 1));
-    }
-    setNumList(newNumList);
-  };
-
-  useEffect(() => {
-    //console.log(props);
-    resetNumList();
-  }, [reset]);
+  const colorList = ["primary.light", "warning.main", "success.main"];
 
   return (
     <Box
@@ -53,7 +35,7 @@ const BarList = ({reset}) => {
           style={{ height: `${num}%` }}
           className={classes.bar}
           component="div"
-          bgcolor="primary.light"
+          bgcolor={colorList[colorStepList[index]]}
         ></Box>
       ))}
     </Box>

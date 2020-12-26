@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import SortForm from "./SortForm";
@@ -24,17 +24,74 @@ const useStyles = makeStyles({
 
 const SortDisplay = () => {
   const sortList = Object.keys(sortAlgoList);
+  const MAX_LENGTH = 50;
+  const classes = useStyles();
 
-  console.log(sortList);
   const [selectedSort, setSelectedSort] = useState(sortList[0]);
-  const [isSorting, setIsSorting] = useState(false);
-  const [reset, setReset] = useState(false);
+
+  const [currentStep, setCurrentStep] = useState(0);
+  const [numList, setNumList] = useState([]);
+  const [currentColorList, setCurrentColorList] = useState(
+    Array(MAX_LENGTH).fill(0)
+  );
+
+  const [sortStep, setSortStep] = useState([]);
+  const [stepColor, setStepColor] = useState([]);
+  const [timeoutList, setTimeoutList] = useState([]);
+
+  const generateNumList = () => {
+    const newNumList = [];
+    for (let i = 0; i < MAX_LENGTH; i += 1) {
+      newNumList.push(Math.floor(Math.random() * 100 + 1));
+    }
+    setCurrentStep(0);
+    setNumList(newNumList);
+    setSortStep([newNumList]);
+    sortNumList(newNumList);
+    clearTimeOutList();
+  };
+
+  const setNewStepList = (newStepList, newColorStep) => {
+    setSortStep(newStepList);
+    setStepColor(newColorStep);
+  };
+
+  const sortNumList = () => {
+    sortAlgoList[selectedSort]({ numList, setNewStepList });
+  };
 
   const handleSortChange = (e) => {
     setSelectedSort(e.target.value);
   };
 
-  const classes = useStyles();
+  const clearTimeOutList = () => {
+    timeoutList.forEach((element) => clearTimeout(element));
+    setTimeoutList([]);
+  };
+
+  const startSort = () => {
+    clearTimeOutList();
+    const timeouts = [];
+    for (let i = currentStep; i < sortStep.length; i++) {
+      const step = setTimeout(() => {
+        setNumList(sortStep[i]);
+        setCurrentColorList(stepColor[i]);
+        setCurrentStep(i);
+        
+      }, 30);
+      timeouts.push(step);
+    }
+    setTimeoutList(timeouts);
+  };
+
+  useEffect(() => {
+    generateNumList();
+  }, [selectedSort]);
+
+  const isSorting = () => {
+    return (timeoutList.length !== 0 && currentStep !== sortStep.length)
+  }
+
   return (
     <Box
       display="flex"
@@ -44,20 +101,19 @@ const SortDisplay = () => {
       className={classes.sortDisplay}
     >
       <Box>
-        <BarList selectedSort={selectedSort} isSorting={isSorting} reset={reset} />
+        <BarList numList={numList} colorStepList={currentColorList} />
       </Box>
       <Box className={classes.sortTool}>
         <SortForm
           handleSortChange={handleSortChange}
           selectedSort={selectedSort}
           sortList={sortList}
-          isSorting={isSorting}
         />
         <DisplayTools
+          resetNumList={generateNumList}
+          startSort={startSort}
+          stopSort={clearTimeOutList}
           isSorting={isSorting}
-          setIsSorting={setIsSorting}
-          reset={reset}
-          setReset={setReset}
         />
       </Box>
     </Box>
