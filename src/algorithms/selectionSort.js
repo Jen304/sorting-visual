@@ -1,18 +1,17 @@
+import { NOT_SORTED, CUR_POS, SORTED } from "./constant";
+
 const selectionSort = ({ numList, setNewStepList }) => {
-  const NOT_SORTED = 0;
-  const CUR_POS = 1;
-  const SORTED = 2;
   const numArray = [...numList];
   const defaultColorList = Array(numArray.length).fill(NOT_SORTED);
 
-  const n = numArray.length;
+  const length = numArray.length;
   const colorListStep = [];
   const numListStep = [];
-  console.log(numArray);
-  for (let i = 0; i < n; i++) {
+  //console.log(numArray);
+  for (let i = 0; i < length; i++) {
     // find the min number in the remaining list
     let minIndex = i;
-    for (let j = i + 1; j < n; j++) {
+    for (let j = i + 1; j < length; j++) {
       if (numArray[j] < numArray[minIndex]) {
         minIndex = j;
       }
