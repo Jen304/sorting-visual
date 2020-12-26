@@ -24,72 +24,83 @@ const useStyles = makeStyles({
 
 const SortDisplay = () => {
   const sortList = Object.keys(sortAlgoList);
-  const MAX_LENGTH = 50;
+  const MAX_LENGTH = 20;
   const classes = useStyles();
+  const defaultState = {
+    selectedSort: sortList[0],
+    currentStep: 0,
+    numList: [],
+    currentColorList: Array(MAX_LENGTH).fill(0),
+    sortStep: [],
+    stepColor: [],
+    timeoutList: []
 
-  const [selectedSort, setSelectedSort] = useState(sortList[0]);
+  }
 
-  const [currentStep, setCurrentStep] = useState(0);
-  const [numList, setNumList] = useState([]);
-  const [currentColorList, setCurrentColorList] = useState(
-    Array(MAX_LENGTH).fill(0)
-  );
-
-  const [sortStep, setSortStep] = useState([]);
-  const [stepColor, setStepColor] = useState([]);
-  const [timeoutList, setTimeoutList] = useState([]);
+  const [state, setState] = useState(defaultState);
 
   const generateNumList = () => {
     const newNumList = [];
     for (let i = 0; i < MAX_LENGTH; i += 1) {
       newNumList.push(Math.floor(Math.random() * 100 + 1));
     }
-    setCurrentStep(0);
-    setNumList(newNumList);
-    setSortStep([newNumList]);
+    setState({
+      numList: newNumList,
+      ...defaultState
+    })
     sortNumList(newNumList);
     clearTimeOutList();
   };
 
   const setNewStepList = (newStepList, newColorStep) => {
-    setSortStep(newStepList);
-    setStepColor(newColorStep);
+    setState({
+      sortStep: newStepList, stepColor: newColorStep, ...state
+    })
+    console.log(state);
   };
 
   const sortNumList = () => {
-    sortAlgoList[selectedSort]({ numList, setNewStepList });
+    sortAlgoList[state.selectedSort]({ numList: state.numList, setNewStepList });
   };
 
   const handleSortChange = (e) => {
-    setSelectedSort(e.target.value);
+    //setSelectedSort(e.target.value);
+    setState({
+      selectedSort: e.target.value, ...state
+    })
   };
 
   const clearTimeOutList = () => {
-    timeoutList.forEach((element) => clearTimeout(element));
-    setTimeoutList([]);
+    state.timeoutList.forEach((element) => clearTimeout(element));
+    setState({timeoutList: [], ...state})
   };
 
   const startSort = () => {
     clearTimeOutList();
+    console.log('hello');
     const timeouts = [];
     for (let i = currentStep; i < sortStep.length; i++) {
       const step = setTimeout(() => {
-        setNumList(sortStep[i]);
-        setCurrentColorList(stepColor[i]);
-        setCurrentStep(i);
+        setState({
+          currentStep: i,
+          numList: sortStep[i],
+          currentColorList: stepColor[i],
+          ...state
+        })
         
       }, 30);
       timeouts.push(step);
+      console.log(timeouts);
     }
     setTimeoutList(timeouts);
   };
 
   useEffect(() => {
     generateNumList();
-  }, [selectedSort]);
+  }, [state.selectedSort]);
 
   const isSorting = () => {
-    return (timeoutList.length !== 0 && currentStep !== sortStep.length)
+    return (state.timeoutList.length !== 0 && state.currentStep !== sortStep.length)
   }
 
   return (
@@ -101,12 +112,12 @@ const SortDisplay = () => {
       className={classes.sortDisplay}
     >
       <Box>
-        <BarList numList={numList} colorStepList={currentColorList} />
+        <BarList numList={state.numList} colorStepList={state.currentColorList} />
       </Box>
       <Box className={classes.sortTool}>
         <SortForm
           handleSortChange={handleSortChange}
-          selectedSort={selectedSort}
+          selectedSort={state.selectedSort}
           sortList={sortList}
         />
         <DisplayTools

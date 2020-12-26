@@ -19,6 +19,7 @@ const useStyles = makeStyles(() => ({
 const BarList = ({ numList, colorStepList }) => {
   const classes = useStyles();
   const colorList = ["primary.light", "warning.main", "success.main"];
+  console.log(numList);
 
   return (
     <Box
