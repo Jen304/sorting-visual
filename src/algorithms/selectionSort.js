@@ -8,7 +8,7 @@ const selectionSort = ({ numList, setNewStepList }) => {
   const n = numArray.length;
   const colorListStep = [];
   const numListStep = [];
-  console.log(numArray);
+  //console.log(numArray);
   for (let i = 0; i < n; i++) {
     // find the min number in the remaining list
     let minIndex = i;

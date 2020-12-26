@@ -27,6 +27,9 @@ const SortDisplay = () => {
   const MAX_LENGTH = 50;
   const classes = useStyles();
 
+  // let sortStep = [];
+  // let stepColor = [];
+
   const [selectedSort, setSelectedSort] = useState(sortList[0]);
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -34,6 +37,7 @@ const SortDisplay = () => {
   const [currentColorList, setCurrentColorList] = useState(
     Array(MAX_LENGTH).fill(0)
   );
+  const [isSorting, setIsSorting] = useState(false);
 
   const [sortStep, setSortStep] = useState([]);
   const [stepColor, setStepColor] = useState([]);
@@ -44,9 +48,11 @@ const SortDisplay = () => {
     for (let i = 0; i < MAX_LENGTH; i += 1) {
       newNumList.push(Math.floor(Math.random() * 100 + 1));
     }
+    console.log(newNumList);
     setCurrentStep(0);
+    //currentStep = 0;
+    setCurrentColorList( Array(MAX_LENGTH).fill(0))
     setNumList(newNumList);
-    setSortStep([newNumList]);
     sortNumList(newNumList);
     clearTimeOutList();
   };
@@ -54,6 +60,10 @@ const SortDisplay = () => {
   const setNewStepList = (newStepList, newColorStep) => {
     setSortStep(newStepList);
     setStepColor(newColorStep);
+    // sortStep = newStepList;
+    // stepColor = newColorStep;
+    // console.log(newStepList);
+    // console.log(stepColor);
   };
 
   const sortNumList = () => {
@@ -65,19 +75,30 @@ const SortDisplay = () => {
   };
 
   const clearTimeOutList = () => {
+    
     timeoutList.forEach((element) => clearTimeout(element));
     setTimeoutList([]);
   };
 
   const startSort = () => {
+    
+    console.log('play sorting');
+    console.log(currentStep);
+    console.log(stepColor);
     clearTimeOutList();
     const timeouts = [];
     for (let i = currentStep; i < sortStep.length; i++) {
       const step = setTimeout(() => {
         setNumList(sortStep[i]);
         setCurrentColorList(stepColor[i]);
-        setCurrentStep(i);
-        
+        console.log(i);
+        if(i == sortStep.length -1){
+          console.log('reset current step');
+          setCurrentStep(0);
+          setIsSorting(false);
+        }else{
+          setCurrentStep(i);
+        }
       }, 30);
       timeouts.push(step);
     }
@@ -88,9 +109,6 @@ const SortDisplay = () => {
     generateNumList();
   }, [selectedSort]);
 
-  const isSorting = () => {
-    return (timeoutList.length !== 0 && currentStep !== sortStep.length)
-  }
 
   return (
     <Box
@@ -114,6 +132,7 @@ const SortDisplay = () => {
           startSort={startSort}
           stopSort={clearTimeOutList}
           isSorting={isSorting}
+          setIsSorting={setIsSorting}
         />
       </Box>
     </Box>

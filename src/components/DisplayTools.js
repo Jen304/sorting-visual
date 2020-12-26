@@ -14,15 +14,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DisplayTools = ({ resetNumList, startSort, stopSort, isSorting }) => {
+const DisplayTools = ({ resetNumList, startSort, stopSort, isSorting, setIsSorting }) => {
   const classes = useStyles();
 
   const handleSortState = () => {
     console.log('play')
-    if(isSorting()){
-      stopSort()
+    if(isSorting){
+      stopSort();
+      setIsSorting(false);
     }else{
       startSort();
+      setIsSorting(true);
     }
   };
 
@@ -39,7 +41,7 @@ const DisplayTools = ({ resetNumList, startSort, stopSort, isSorting }) => {
           <Icon>replay</Icon>
         </Button>
         <Button onClick={handleSortState}>
-          {isSorting() ? (
+          {isSorting ? (
             <Icon>pause_circle_filled</Icon>
           ) : (
             <Icon>play_circle_outline</Icon>
