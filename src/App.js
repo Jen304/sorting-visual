@@ -6,7 +6,7 @@ import SortDisplay from "./components/SortDisplay";
 function App() {
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar>
           <Typography variant="h6">Sorting Visualization</Typography>{" "}
         </Toolbar>

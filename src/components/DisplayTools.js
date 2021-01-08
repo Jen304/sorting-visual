@@ -47,7 +47,7 @@ const DisplayTools = ({
         <Button onClick={resetNumList}>
           <Icon>replay</Icon>
         </Button>
-        <Button onClick={prevStep} variant="outlined">
+        <Button onClick={prevStep} variant="outlined" color="secondary">
           <Icon>skip_previous</Icon>
         </Button>
         <Button onClick={handleSortState}>
@@ -57,7 +57,7 @@ const DisplayTools = ({
             <Icon>play_circle_outline</Icon>
           )}
         </Button>
-        <Button onClick={nextStep} variant="outlined">
+        <Button onClick={nextStep} variant="outlined" color="secondary">
           <Icon>skip_next</Icon>
         </Button>
       </ButtonGroup>

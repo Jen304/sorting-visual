@@ -16,17 +16,19 @@ const useStyles = makeStyles({
     position: "relative",
   },
   sortTool: {
-    height: "78vh",
+    height: "75vh",
     position: "relative",
     marginLeft: 50,
   },
 });
 
 const SortDisplay = () => {
+  // get a list of algo list by create new object (avoid shallow copy)
   const sortList = Object.keys(sortAlgoList);
   const MAX_LENGTH = 50;
   const classes = useStyles();
 
+  // Create states
   const [selectedSort, setSelectedSort] = useState(sortList[0]);
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -99,6 +101,7 @@ const SortDisplay = () => {
     }
   };
 
+  // Display previous step
   const backwardPrevStep = () => {
     if (currentStep > 0) {
       const nextStep = currentStep - 1;
@@ -108,6 +111,7 @@ const SortDisplay = () => {
     }
   };
 
+  // create new list when the component mounted or selectedSort value updated
   useEffect(() => {
     generateNumList();
   }, [selectedSort]);

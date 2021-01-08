@@ -17,6 +17,7 @@ const insertionSort = ({ numList, setNewStepList }) => {
     while (j > -1 && current < numArray[j]) {
       numArray[j + 1] = numArray[j];
       j--;
+      
       const newColorList = [...defaultColorList];
       newColorList[i] = CUR_POS;
       newColorList[j] = CUR_POS;
