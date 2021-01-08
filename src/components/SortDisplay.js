@@ -73,7 +73,9 @@ const SortDisplay = () => {
     setTimeoutList([]);
   };
 
+  // start or resume display the sorting steps
   const startSort = () => {
+    // need to clear all previous sorting lists
     clearTimeOutList();
     const timeouts = [];
     for (let i = currentStep; i < sortStep.length; i++) {
@@ -86,7 +88,7 @@ const SortDisplay = () => {
         } else {
           setCurrentStep(i);
         }
-      }, 100);
+      }, 500);
       timeouts.push(step);
     }
     setTimeoutList(timeouts);

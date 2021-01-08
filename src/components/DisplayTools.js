@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ButtonGroup, Button, Icon } from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(() => ({
   buttonGroupContainer: {
@@ -12,6 +14,9 @@ const useStyles = makeStyles(() => ({
   buttonGroup: {
     margin: "5px auto",
   },
+  playbutton: {
+    fontSize: 70
+  }
 }));
 
 const DisplayTools = ({
@@ -40,26 +45,26 @@ const DisplayTools = ({
       <ButtonGroup
         color="primary"
         className={classes.buttonGroup}
-        variant="contained"
         aria-label="contained primary button group"
         fullWidth
       >
-        <Button onClick={resetNumList}>
+        <IconButton onClick={resetNumList}>
           <Icon>replay</Icon>
-        </Button>
-        <Button onClick={prevStep} variant="outlined" color="secondary">
+        </IconButton>
+        <IconButton onClick={prevStep}  color="secondary">
           <Icon>skip_previous</Icon>
-        </Button>
-        <Button onClick={handleSortState}>
+        </IconButton>
+        <IconButton onClick={handleSortState}>
           {isSorting ? (
-            <Icon>pause_circle_filled</Icon>
+            <Icon className={classes.playbutton}>pause_circle_filled</Icon>
           ) : (
-            <Icon>play_circle_outline</Icon>
+            <Icon className={classes.playbutton}>play_circle_outline</Icon>
           )}
-        </Button>
-        <Button onClick={nextStep} variant="outlined" color="secondary">
+        </IconButton>
+        <IconButton onClick={nextStep}  color="secondary">
           <Icon>skip_next</Icon>
-        </Button>
+        </IconButton>
+       
       </ButtonGroup>
     </div>
   );
