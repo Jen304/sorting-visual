@@ -71,6 +71,7 @@ const SortDisplay = () => {
   const clearTimeOutList = () => {
     timeoutList.forEach((element) => clearTimeout(element));
     setTimeoutList([]);
+    setIsSorting(false);
   };
 
   // start or resume display the sorting steps
@@ -78,6 +79,7 @@ const SortDisplay = () => {
     // need to clear all previous sorting lists
     clearTimeOutList();
     const timeouts = [];
+    setIsSorting(true);
     for (let i = currentStep; i < sortStep.length; i++) {
       const step = setTimeout(() => {
         setNumList(sortStep[i]);
@@ -88,7 +90,7 @@ const SortDisplay = () => {
         } else {
           setCurrentStep(i);
         }
-      }, 500);
+      },  (i + 1) * 200);
       timeouts.push(step);
     }
     setTimeoutList(timeouts);
@@ -140,7 +142,6 @@ const SortDisplay = () => {
           startSort={startSort}
           stopSort={clearTimeOutList}
           isSorting={isSorting}
-          setIsSorting={setIsSorting}
           nextStep={forwardNextStep}
           prevStep={backwardPrevStep}
         />

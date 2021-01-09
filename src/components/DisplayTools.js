@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { ButtonGroup, Button, Icon } from "@material-ui/core";
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { ButtonGroup, Icon, IconButton } from "@material-ui/core";
+
 
 const useStyles = makeStyles(() => ({
   buttonGroupContainer: {
@@ -24,7 +23,6 @@ const DisplayTools = ({
   startSort,
   stopSort,
   isSorting,
-  setIsSorting,
   nextStep,
   prevStep,
 }) => {
@@ -33,10 +31,8 @@ const DisplayTools = ({
   const handleSortState = () => {
     if (isSorting) {
       stopSort();
-      setIsSorting(false);
     } else {
       startSort();
-      setIsSorting(true);
     }
   };
 
