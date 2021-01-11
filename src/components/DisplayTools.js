@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ButtonGroup, Icon, IconButton } from "@material-ui/core";
 
-
 const useStyles = makeStyles(() => ({
   buttonGroupContainer: {
     minWidth: 150,
@@ -14,8 +13,8 @@ const useStyles = makeStyles(() => ({
     margin: "5px auto",
   },
   playbutton: {
-    fontSize: 70
-  }
+    fontSize: 70,
+  },
 }));
 
 const DisplayTools = ({
@@ -47,7 +46,7 @@ const DisplayTools = ({
         <IconButton onClick={resetNumList}>
           <Icon>replay</Icon>
         </IconButton>
-        <IconButton onClick={prevStep}  color="secondary">
+        <IconButton onClick={prevStep} color="secondary">
           <Icon>skip_previous</Icon>
         </IconButton>
         <IconButton onClick={handleSortState}>
@@ -57,10 +56,9 @@ const DisplayTools = ({
             <Icon className={classes.playbutton}>play_circle_outline</Icon>
           )}
         </IconButton>
-        <IconButton onClick={nextStep}  color="secondary">
+        <IconButton onClick={nextStep} color="secondary">
           <Icon>skip_next</Icon>
         </IconButton>
-       
       </ButtonGroup>
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-import SortForm from "./SortForm";
 import BarList from "./BarList";
 import DisplayTools from "./DisplayTools";
 
@@ -22,10 +21,10 @@ const useStyles = makeStyles({
   },
 });
 
-const SortDisplay = () => {
+const SortDisplay = ({ sortType, size, speed }) => {
   // get a list of algo list by create new object (avoid shallow copy)
   const sortList = Object.keys(sortAlgoList);
-  const MAX_LENGTH = 50;
+  const DEFAULT_TIMEOUT = 300;
   const classes = useStyles();
 
   // Create states
@@ -33,23 +32,22 @@ const SortDisplay = () => {
 
   const [currentStep, setCurrentStep] = useState(0);
   const [numList, setNumList] = useState([]);
-  const [currentColorList, setCurrentColorList] = useState(
-    Array(MAX_LENGTH).fill(0)
-  );
+  const [currentColorList, setCurrentColorList] = useState(Array(size).fill(0));
   const [isSorting, setIsSorting] = useState(false);
 
   const [sortStep, setSortStep] = useState([]);
   const [stepColor, setStepColor] = useState([]);
   const [timeoutList, setTimeoutList] = useState([]);
 
+  // Generate a new list and sort that list
   const generateNumList = () => {
     const newNumList = [];
-    for (let i = 0; i < MAX_LENGTH; i += 1) {
+    for (let i = 0; i < size; i += 1) {
       newNumList.push(Math.floor(Math.random() * 100 + 1));
     }
     sortNumList(newNumList);
     setCurrentStep(0);
-    setCurrentColorList(Array(MAX_LENGTH).fill(0));
+    setCurrentColorList(Array(size).fill(0));
     setNumList(newNumList);
 
     clearTimeOutList();
@@ -61,11 +59,7 @@ const SortDisplay = () => {
   };
 
   const sortNumList = (newNumList) => {
-    sortAlgoList[selectedSort]({ numList: newNumList, setNewStepList });
-  };
-
-  const handleSortChange = (e) => {
-    setSelectedSort(e.target.value);
+    sortAlgoList[sortType]({ numList: newNumList, setNewStepList });
   };
 
   const clearTimeOutList = () => {
@@ -79,19 +73,23 @@ const SortDisplay = () => {
     // need to clear all previous sorting lists
     clearTimeOutList();
     const timeouts = [];
+    const deplayTime = DEFAULT_TIMEOUT / parseFloat(speed);
     setIsSorting(true);
-    for (let i = currentStep; i < sortStep.length; i++) {
+    const startPoint = currentStep;
+    for (let i = 0; i + startPoint < sortStep.length; i++) {
+      const nextStep = i + startPoint;
       const step = setTimeout(() => {
-        setNumList(sortStep[i]);
-        setCurrentColorList(stepColor[i]);
-        if (i === sortStep.length - 1) {
+        setNumList(sortStep[nextStep]);
+        setCurrentColorList(stepColor[nextStep]);
+        if (nextStep === sortStep.length - 1) {
           setCurrentStep(0);
           setIsSorting(false);
         } else {
-          setCurrentStep(i);
+          setCurrentStep(nextStep);
         }
-      },  (i + 1) * 200);
+      }, i * deplayTime);
       timeouts.push(step);
+      console.log(timeouts);
     }
     setTimeoutList(timeouts);
   };
@@ -118,7 +116,7 @@ const SortDisplay = () => {
   // create new list when the component mounted or selectedSort value updated
   useEffect(() => {
     generateNumList();
-  }, [selectedSort]);
+  }, [sortType, speed, size]);
 
   return (
     <Box
@@ -132,11 +130,6 @@ const SortDisplay = () => {
         <BarList numList={numList} colorStepList={currentColorList} />
       </Box>
       <Box className={classes.sortTool}>
-        <SortForm
-          handleSortChange={handleSortChange}
-          selectedSort={selectedSort}
-          sortList={sortList}
-        />
         <DisplayTools
           resetNumList={generateNumList}
           startSort={startSort}

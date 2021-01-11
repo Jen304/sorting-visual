@@ -15,17 +15,17 @@ let bubbleSort = ({ numList, setNewStepList }) => {
         let tmp = numArray[j];
         numArray[j] = numArray[j + 1];
         numArray[j + 1] = tmp;
-        
+
         const newColorList = [...defaultColorList];
         newColorList[j] = CUR_POS;
         newColorList[j + 1] = CUR_POS;
-        
+
         addNewStep(numArray, newColorList);
       }
     }
     defaultColorList[length - 1 - i] = SORTED;
   }
-  
+
   addNewStep(numArray, defaultColorList);
   setStepList();
 };

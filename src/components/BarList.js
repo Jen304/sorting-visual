@@ -6,12 +6,13 @@ const useStyles = makeStyles(() => ({
   barContainer: {
     height: "75vh",
     width: "70vw",
-    padding: '10px 30px',
+    padding: "10px",
     marginRight: 40,
     backgroundColor: "#37474f",
   },
   bar: {
     width: "1.6%",
+    marginRight: "2px",
   },
 }));
 
@@ -24,7 +25,7 @@ const BarList = ({ numList, colorStepList }) => {
       boxShadow={3}
       display="flex"
       flexDirection="row"
-      justifyContent="space-evenly"
+      justifyContent="center"
       alignItems="flex-end"
       className={classes.barContainer}
     >
