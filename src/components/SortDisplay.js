@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import BarList from "./BarList";
 import DisplayTools from "./DisplayTools";
+import SortInfo from "./SortInfo"
 
 // Import sorting algo
 import sortAlgoList from "../algorithms/";
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
     height: "75vh",
     position: "relative",
     marginLeft: 50,
-    width: '10vw'
+    width: '15vw'
   },
 });
 
@@ -127,6 +128,7 @@ const SortDisplay = ({ sortType, size, speed }) => {
         <BarList numList={numList} colorStepList={currentColorList} />
       </Box>
       <Box className={classes.sortTool}>
+        <SortInfo sortType={sortType} />
         <DisplayTools
           resetNumList={generateNumList}
           startSort={startSort}
