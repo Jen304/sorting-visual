@@ -8,13 +8,15 @@ let bubbleSort = ({ numList, setNewStepList }) => {
     addNewStep,
     setStepList,
   } = sortHelper(numList, setNewStepList);
-
-  for (let i = 0; i < length; i++) {
+  let isSwap = true
+  for (let i = 0; i < length && isSwap; i++) {
+    isSwap = false;
     for (let j = 0; j < length - 1 - i; j++) {
       if (numArray[j] > numArray[j + 1]) {
         let tmp = numArray[j];
         numArray[j] = numArray[j + 1];
         numArray[j + 1] = tmp;
+        isSwap = true;
       }
       const newColorList = [...defaultColorList];
       newColorList[j] = CUR_POS;
@@ -24,8 +26,8 @@ let bubbleSort = ({ numList, setNewStepList }) => {
     }
     defaultColorList[length - 1 - i] = SORTED;
   }
-
-  addNewStep(numArray, defaultColorList);
+  defaultColorList[0] = SORTED;
+  addNewStep(numArray, Array(defaultColorList.length).fill(SORTED));
   setStepList();
 };
 

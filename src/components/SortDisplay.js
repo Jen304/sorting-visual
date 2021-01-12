@@ -18,17 +18,13 @@ const useStyles = makeStyles({
     height: "75vh",
     position: "relative",
     marginLeft: 50,
+    width: '10vw'
   },
 });
 
 const SortDisplay = ({ sortType, size, speed }) => {
-  // get a list of algo list by create new object (avoid shallow copy)
-  const sortList = Object.keys(sortAlgoList);
   const DEFAULT_TIMEOUT = 300;
   const classes = useStyles();
-
-  // Create states
-  const [selectedSort, setSelectedSort] = useState(sortList[0]);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [numList, setNumList] = useState([]);
@@ -82,7 +78,7 @@ const SortDisplay = ({ sortType, size, speed }) => {
         setNumList(sortStep[nextStep]);
         setCurrentColorList(stepColor[nextStep]);
         if (nextStep === sortStep.length - 1) {
-          setCurrentStep(0);
+          //setCurrentStep(0);
           setIsSorting(false);
         } else {
           setCurrentStep(nextStep);
@@ -90,7 +86,7 @@ const SortDisplay = ({ sortType, size, speed }) => {
       }, i * deplayTime);
       timeouts.push(step);
     }
-    console.log(timeouts);
+    //console.log(timeouts);
     setTimeoutList(timeouts);
   };
 
@@ -105,6 +101,7 @@ const SortDisplay = ({ sortType, size, speed }) => {
 
   // Display previous step
   const backwardPrevStep = () => {
+    console.log(currentStep);
     if (currentStep > 0) {
       const nextStep = currentStep - 1;
       setNumList(sortStep[nextStep]);

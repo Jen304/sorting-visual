@@ -63,7 +63,7 @@ function App() {
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography variant="h6" className={classes.appTitle}>
+          <Typography variant="h5" className={classes.appTitle}>
             Sorting Visualization
           </Typography>
           {customeList.map((element) => {
