@@ -89,8 +89,8 @@ const SortDisplay = ({ sortType, size, speed }) => {
         }
       }, i * deplayTime);
       timeouts.push(step);
-      console.log(timeouts);
     }
+    console.log(timeouts);
     setTimeoutList(timeouts);
   };
 
