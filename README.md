@@ -10,6 +10,13 @@ This project is to help me understand more about some sorting algorithms as well
 * Start or pause sorting display
 * Reset to a new sorting display
 * Forward or backward sorting by each step.
+* Switch themes
+
+## What I learnt
+* Review basic React and Material UI
+* React hooks: useState, useEffect and useContext
+* Learn and practice with Context to create and use global state for the app theme
+
 ## Usage
 1. Clone this repo to logo machine
 2. Open terminal on the project directory

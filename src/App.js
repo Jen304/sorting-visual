@@ -9,6 +9,7 @@ import {
   MenuItem,
   FormHelperText,
 } from "@material-ui/core";
+import ThemeSwitcher from './components/ThemeSwitcher';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formStyle: {
     margin: theme.spacing(2),
+    color: "white !important",
   },
 }));
 
@@ -27,6 +29,7 @@ function App() {
   const [sortType, setSortType] = useState("Selection");
   const [size, setSize] = useState(20);
   const [speed, setSpeed] = useState("1x");
+
 
   const handleSortTypeChange = (e) => {
     setSortType(e.target.value);
@@ -60,7 +63,7 @@ function App() {
     },
   ];
   return (
-    <div className={classes.root}>
+    <>
       <AppBar position="static" color="primary">
         <Toolbar>
           <Typography variant="h5" className={classes.appTitle}>
@@ -84,12 +87,14 @@ function App() {
                   {valueList}
                 </Select>
               </FormControl>
+              
             );
           })}
+      <ThemeSwitcher/>
         </Toolbar>
       </AppBar>
       <SortDisplay sortType={sortType} size={size} speed={speed} />
-    </div>
+      </>
   );
 }
 

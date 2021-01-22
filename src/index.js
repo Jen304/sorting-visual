@@ -4,27 +4,17 @@ import "./index.css";
 import App from "./App";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import CustomeThemeProvider from './themes/CustomThemeProvider'
 
-const theme = createMuiTheme({
-  palette: {
-    type: "dark",
-    primary: {
-      main: "#2196f3",
-    },
-    secondary: {
-      main: "#ef6c00",
-    },
-  },
-});
 
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
+  <CustomeThemeProvider>
+     <CssBaseline />
     <App />
-  </ThemeProvider>,
+  </CustomeThemeProvider>
+ ,
   document.getElementById("root")
 );
 
