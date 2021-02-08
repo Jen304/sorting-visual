@@ -8,7 +8,7 @@ let bubbleSort = ({ numList, setNewStepList }) => {
     addNewStep,
     setStepList,
   } = sortHelper(numList, setNewStepList);
-  
+
   let isSwap = true;
   for (let i = 0; i < length && isSwap; i++) {
     isSwap = false;

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./App.css";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import SortDisplay from "./components/SortDisplay";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 import {
   FormControl,
   Select,
   MenuItem,
   FormHelperText,
 } from "@material-ui/core";
-import ThemeSwitcher from './components/ThemeSwitcher';
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,11 +17,15 @@ const useStyles = makeStyles((theme) => ({
   },
   appTitle: {
     flexGrow: 1,
+    color: 'white !important'
   },
   formStyle: {
     margin: theme.spacing(2),
-    color: "white !important",
+   
   },
+  appText: {
+    color: "white !important",
+  }
 }));
 
 function App() {
@@ -29,7 +33,6 @@ function App() {
   const [sortType, setSortType] = useState("Selection");
   const [size, setSize] = useState(20);
   const [speed, setSpeed] = useState("1x");
-
 
   const handleSortTypeChange = (e) => {
     setSortType(e.target.value);
@@ -42,7 +45,7 @@ function App() {
     setSpeed(e.target.value);
   };
 
-  const customeList = [
+  const customerList = [
     {
       label: "Sort Type:",
       valueList: ["Selection", "Insertion", "Bubble"],
@@ -69,7 +72,7 @@ function App() {
           <Typography variant="h5" className={classes.appTitle}>
             Sorting Visualization
           </Typography>
-          {customeList.map((element) => {
+          {customerList.map((element) => {
             const valueList = element.valueList.map((item) => (
               <MenuItem key={item} value={item}>
                 {item}
@@ -77,24 +80,24 @@ function App() {
             ));
             return (
               <FormControl className={classes.formStyle} key={element.label}>
-                <FormHelperText>{element.label} </FormHelperText>
+                <FormHelperText className={classes.appText} >{element.label} </FormHelperText>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={element.state}
                   onChange={element.handleInput}
+                  className={classes.appText}
                 >
                   {valueList}
                 </Select>
               </FormControl>
-              
             );
           })}
-      <ThemeSwitcher/>
+          <ThemeSwitcher/>
         </Toolbar>
       </AppBar>
       <SortDisplay sortType={sortType} size={size} speed={speed} />
-      </>
+    </>
   );
 }
 

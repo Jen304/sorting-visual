@@ -1,5 +1,5 @@
-# Sorting algorithm visualisation
-> This project is to display the sorting steps visually, such as bubble sort, seclection sort, etc.
+# Sorting algorithm visualization
+> This project is to display the sorting steps visually, such as bubble sort, selection sort, etc.
 
 ## Motivation
 This project is to help me understand more about some sorting algorithms as well as React. 
@@ -10,12 +10,12 @@ This project is to help me understand more about some sorting algorithms as well
 * Start or pause sorting display
 * Reset to a new sorting display
 * Forward or backward sorting by each step.
-* Switch themes
+* Switch themes (dark and light)
 
 ## What I learnt
 * Review basic React and Material UI
 * React hooks: useState, useEffect and useContext
-* Learn and practice with Context to create and use global state for the app theme
+* Learn and practice with Context to create and use global state for to switch theme
 
 ## Usage
 1. Clone this repo to logo machine
@@ -23,8 +23,11 @@ This project is to help me understand more about some sorting algorithms as well
 3. Run the project, enter: `npm start`
 4. Build the project, enter: `npm run build`
 
-## Framework, libaries used
+## Framework, libraries used
 * [React](https://reactjs.org/)
 * [Create-react-app](https://create-react-app.dev/)
 * [Material-UI](https://material-ui.com/)
+
+## What I want to improve
+* Responsive display
   

@@ -4,17 +4,15 @@ import "./index.css";
 import App from "./App";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import CustomeThemeProvider from './themes/CustomThemeProvider'
-
+import CustomThemeProvider from "./themes/CustomThemeProvider";
 
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <CustomeThemeProvider>
-     <CssBaseline />
+  <CustomThemeProvider>
+    <CssBaseline />
     <App />
-  </CustomeThemeProvider>
- ,
+  </CustomThemeProvider>,
   document.getElementById("root")
 );
 
