@@ -18,10 +18,10 @@ This project is to help me understand more about some sorting algorithms as well
 * Learn and practice with Context to create and use global state for to switch theme
 
 ## Usage
-1. Clone this repo to logo machine
+1. Clone this repo to your local machine
 2. Open terminal on the project directory
-3. Run the project, enter: `npm start`
-4. Build the project, enter: `npm run build`
+3. To run the project, enter: `npm start`
+4. To build the project, enter: `npm run build`
 
 ## Framework, libraries used
 * [React](https://reactjs.org/)
