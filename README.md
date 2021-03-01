@@ -1,6 +1,10 @@
 # Sorting algorithm visualization
 > This project is to display the sorting steps visually, such as bubble sort, selection sort, etc.
 
+## Demo
+Visit the link: https://sort-visual-one.vercel.app/
+
+
 ## Motivation
 This project is to help me understand more about some sorting algorithms as well as React. 
 
